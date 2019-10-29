@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Waker</string>
+    <string name="app_name">Wake on LAN Widget</string>
     <string name="configure">Configure</string>
     <string name="machine_name">Machine name</string>
     <string name="mac">MAC address</string>
