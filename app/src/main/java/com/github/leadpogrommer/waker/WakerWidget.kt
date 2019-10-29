@@ -4,7 +4,6 @@ import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
 
@@ -51,12 +50,19 @@ class WakerWidget : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.waker_widget)
             views.setTextViewText(R.id.machine_name, machineName)
 //            views.setOnClickPendingIntent(R.id.wake_button, PendingIntent.getService(context, appWidgetId, WakeService.newIntent(context, appWidgetId),0))
-            views.setOnClickPendingIntent(R.id.wake_button, PendingIntent.getBroadcast(context, appWidgetId, WakeReceiver.newIntent(context, appWidgetId), PendingIntent.FLAG_CANCEL_CURRENT))
+            views.setOnClickPendingIntent(
+                R.id.wake_button,
+                PendingIntent.getBroadcast(
+                    context,
+                    appWidgetId,
+                    WakeReceiver.newIntent(context, appWidgetId),
+                    PendingIntent.FLAG_CANCEL_CURRENT
+                )
+            )
 
 
             // Instruct the widget manager to update the widget
             appWidgetManager.updateAppWidget(appWidgetId, views)
-            Log.d("govno", "zalupa $appWidgetId")
         }
     }
 }

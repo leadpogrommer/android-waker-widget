@@ -3,11 +3,11 @@ package com.github.leadpogrommer.waker
 import android.content.Context
 import java.io.Serializable
 
-class WidgetPrefs: Serializable{
+class WidgetPrefs : Serializable {
     var name: String? = null
     var mac: String? = null
 
-    companion object{
+    companion object {
         private const val PREFS_NAME = "com.github.leadpogrommer.waker.WakerWidget"
         private const val PREF_PREFIX_KEY = "appwidget_"
 
@@ -25,7 +25,7 @@ class WidgetPrefs: Serializable{
             val prefs = context.getSharedPreferences(PREFS_NAME, 0)
             val string = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null)
 
-            string?: return null
+            string ?: return null
 
             val data = WidgetPrefs()
             data.mac = string.slice(0..16)

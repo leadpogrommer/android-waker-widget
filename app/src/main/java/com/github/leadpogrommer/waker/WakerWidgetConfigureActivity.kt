@@ -1,28 +1,24 @@
 package com.github.leadpogrommer.waker
 
 import android.app.Activity
-import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.RemoteViews
 
 
 class WakerWidgetConfigureActivity : Activity() {
     private var mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
-    
+
     private lateinit var mMachineName: EditText
     private lateinit var mMachineMAC: EditText
     private lateinit var mAddButton: Button
-    
-    
+
+
     private var mOnClickListener: View.OnClickListener = View.OnClickListener {
         val context = this@WakerWidgetConfigureActivity
 
@@ -32,7 +28,6 @@ class WakerWidgetConfigureActivity : Activity() {
         wp.mac = mMachineMAC.text.toString()
 
         WidgetPrefs.saveWidgetPref(context, mAppWidgetId, wp)
-
 
 
         // It is the responsibility of the configuration activity to update the app widget
@@ -54,14 +49,14 @@ class WakerWidgetConfigureActivity : Activity() {
         setResult(RESULT_CANCELED)
 
         setContentView(R.layout.waker_widget_configure)
-        
+
         mMachineMAC = findViewById(R.id.machine_mac)
         mMachineName = findViewById(R.id.machine_name)
         mAddButton = findViewById(R.id.add_button)
 
         mAddButton.isEnabled = false
 
-        mMachineMAC.addTextChangedListener(object: TextWatcher{
+        mMachineMAC.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 mAddButton.isEnabled = validateMAC(p0.toString())
             }
@@ -95,7 +90,7 @@ class WakerWidgetConfigureActivity : Activity() {
     companion object {
         private val macRegex: Regex = Regex("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\$", setOf(RegexOption.MULTILINE))
 
-        fun validateMAC(str: String): Boolean{
+        fun validateMAC(str: String): Boolean {
             return macRegex.matches(str)
         }
     }

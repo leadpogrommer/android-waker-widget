@@ -5,5 +5,6 @@
     <string name="mac">MAC address</string>
     <string name="power_button_description">Power button</string>
     <string name="packet_sent">Magic packet was sent to %s</string>
-    <string name="packet_error">Unable to sent magic packet to %s! If you in power save mode, disable it and try again</string>
+    <string name="packet_error">Unable to sent magic packet to %s! If you in power save mode, disable it and try again
+    </string>
 </resources>
